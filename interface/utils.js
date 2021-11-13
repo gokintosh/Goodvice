@@ -15,7 +15,7 @@ function getInput() {
         } else {
             console.log(`Thanks! ${input} is valid`);
 
-            console.log(`we are generating ${input} advices to make you the next Elon Musk`)
+            console.log(`!!!Hold on Mordo.... we are generating ${input} advices to make you the next Elon Musk`)
 
 
             rl.close();

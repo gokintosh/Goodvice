@@ -1,5 +1,5 @@
 // const axios=require('axios');
-
+const translateApi=require("./translate_advice")
 const { default: axios } = require("axios")
 
 
@@ -23,9 +23,13 @@ const someFunc=async limit=>{
         
     }
     if(i==limit){
-        printArray()
+        translate(array)
     }
 }
+
+// function returnEngArray(){
+//     return array
+// }
 
 
 // // function callApiEveryNSeconds(n){
@@ -91,7 +95,18 @@ function callApi(limit){
     someFunc(limit)
 }
 
+
+function translate(array){
+    translateApi.sendAllData(array)
+}
+
+
+
+
+
 exports.callApi=callApi
+
+// exports.returnEngArray=returnEngArray
 
 
 
