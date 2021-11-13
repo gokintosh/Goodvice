@@ -12,12 +12,12 @@ let array=[]
 //     array.push(response.data)
 // }
 
-let limit=20
+let limit
 
 let start=0
 let i
 
-const someFunc=async()=>{
+const someFunc=async limit=>{
     for(i=start;i<limit;i++){
         array.push(await (await axios.get("https://api.adviceslip.com/advice")).data.slip.advice)
         
@@ -60,14 +60,39 @@ const someFunc=async()=>{
 // getloop();
 
 function printArray(){
-    for(let i=start;i<limit;i++){
+    for(let i=start;i<array.length;i++){
         console.log(array[i])
-        console.log("hi")
+        console.log("\n")
     }
-    console.log(array.length);
+    console.log(`this is${array.length}`);
 }
 
-someFunc()
+
+// const createLi=(advice)=>{
+//     const li=document.createElement('li')
+
+//     li.textContent=`${advice.id} : ${advice.advice}`;
+//     return li
+// }
+
+
+
+// const appendToDom=()=>{
+//      const ul=document.querySelector('ul')
+
+//      array.map(advice=>{
+//          ul.appendChild(createLi(advice))
+//      })
+// }
+
+
+
+function callApi(limit){
+    someFunc(limit)
+}
+
+exports.callApi=callApi
+
 
 
 
