@@ -1,5 +1,6 @@
 const axios=require('axios')
 const api=require("./get_advice")
+const utils=require("./utils")
 
 let pol_advice_array=[]
 let i
@@ -35,6 +36,9 @@ const sendAllData=async eng_advice_array =>{
   
 }
 
+
+
+
 function printArray(eng_array,pol_array){
     console.log("inside the print translate")
     for(let i=0;i<pol_advice_array.length;i++){
@@ -42,6 +46,12 @@ function printArray(eng_array,pol_array){
         console.log(pol_array[i])
         console.log("\n")
     }
+
+    utils.loop()
+    
+
+
+    
     
 }
 

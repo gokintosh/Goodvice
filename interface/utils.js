@@ -31,8 +31,16 @@ function getInput() {
     
 }
 
+function loop(){
+    console.log("\n")
+    console.log("\n")
+   
+    console.log("would you like to explore more?")
+}
+
 
 
 exports.getInput=getInput
+exports.loop=loop
 
  
