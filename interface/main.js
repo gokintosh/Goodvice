@@ -1,4 +1,4 @@
-
+const figlet = require("figlet")
 
 const util=require('./utils')
 
@@ -8,9 +8,8 @@ console.clear()
 
 
 
-console.log("******************************welcome to GoodVice************************************")
+console.log("")
 
-const readline = require('readline');
 
 
 
