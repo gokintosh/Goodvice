@@ -26,3 +26,6 @@ daily dose of advice
 - ##### if you have npm and node.js installed, got to the root folder of project and run command 'npm install'.
 - ##### go the 'interface' folder and run command 'node index.js'. This starts the CLI app.
 - ##### Enjoy✨😎
+
+
+[Click here to view instruction manual](https://docs.google.com/document/d/1OiocEPZYDb92H-Z5qzFl6Fi8-nqzyC80Ad11e2Tf8k4/edit?usp=sharing)
