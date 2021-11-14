@@ -13,6 +13,9 @@ const sendAllData=async eng_advice_array =>{
 
     for(let i=0;i<eng_advice_array.length;i++){
 
+            console.clear()
+            console.log(`${i} advices loaded!`)
+
 
         
         
@@ -40,7 +43,7 @@ const sendAllData=async eng_advice_array =>{
 
 
 function printArray(eng_array,pol_array){
-    console.log("inside the print translate")
+    console.log(`!!!We hope this ${pol_array.lenth} advices will make you the next Elon Musk!!`)
     for(let i=0;i<pol_advice_array.length;i++){
         console.log(eng_array[i])
         console.log(pol_array[i])

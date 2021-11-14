@@ -3,6 +3,8 @@ const translateApi=require("./translate_advice")
 const { default: axios } = require("axios")
 
 
+
+
 let array=[]
 
 // async function callApi(){
@@ -18,7 +20,15 @@ let start=0
 let i
 
 const someFunc=async limit=>{
+
+    
+
     for(i=start;i<limit;i++){
+
+        
+
+
+
         array.push(await (await axios.get("https://api.adviceslip.com/advice")).data.slip.advice)
         
     }

@@ -34,3 +34,5 @@ console.clear()
 run()
 
 
+exports.run=run
+
