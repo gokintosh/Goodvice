@@ -1,7 +1,5 @@
-const figlet = require("figlet")
-const inquirer = require("inquirer")
-const confirm =require("../node_modules/@inquirer/confirm");
 const util=require('./utils')
+const chalk = require('chalk');
 
 
 console.clear()
@@ -15,6 +13,8 @@ console.clear()
     console.log(" ________________________________________Hi👋,  welcome to GoodVice___________________________________________")
 
     console.log("\n")
+
+    console.log(" ________________________________________Your daily dose of Advices___________________________________________")
 
     console.log("\n")
    
@@ -32,6 +32,13 @@ console.clear()
 
 
 run()
+
+
+
+
+
+
+// export section
 
 
 exports.run=run

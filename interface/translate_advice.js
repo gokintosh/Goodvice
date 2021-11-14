@@ -1,70 +1,74 @@
 const axios=require('axios')
-const api=require("./get_advice")
 const utils=require("./utils")
+const chalk = require('chalk');
+
+
+
 
 let pol_advice_array=[]
-
 let i
 
 
 
-// const eng_advice_array = api.returnEngArray()
+// function to make post request
 
-const sendAllData=async (eng_advice_array,idArray) =>{
+const translateAdvice=async (eng_advice_array,idArray) =>{
 
 
     for(i=0;i<eng_advice_array.length;i++){
 
+            
+
             console.clear()
         
-            console.log(`${i+1} advices loaded!`)
+            console.log(` 🚀🚀🚀🚀🚀 Hold on tight..${i+1} advices translated and can get delayed..🙈🙊🙉!!  `)
 
 
-        
-        
-            await axios.post("https://libretranslate.de/translate",{
-                q:eng_advice_array[i],
-                source:"en",
-                target:"pl"
-            })
-            .then(response => pol_advice_array.push(response.data.translatedText))
 
 
-        
-        
+            // here in case of error we wont close the app instead we will give some custom error message
+
+            try {
+                const resp = await axios.post("https://libretranslate.de/translate",{
+                    q:eng_advice_array[i],
+                    source:"en",
+                    target:"pl"
+                })
     
+                
+                pol_advice_array.push(resp.data.translatedText)
+    
+    
+                
+                
+                
+            } catch (err) {
+    
+                // cath error and give custom values
+                pol_advice_array.push("nie udało się pobrać tej transakcji !!")
+                
+               
+            }
         
     }
  
+
+    // if the number satisfies the input size
     
     if(i==eng_advice_array.length){
-        printArray(eng_advice_array,pol_advice_array,idArray)
-    }
+        utils.printArray(eng_advice_array,idArray,pol_advice_array)
   
 }
 
 
 
-
-function printArray(eng_array,pol_array,id_array){
-    console.log(`!!!We hope this ${pol_array.length} advices will make you the next Elon Musk!!`)
-    
-    for(let j=0;j<eng_array.length;j++){
-        console.log(id_array[j])
-        console.log(eng_array[j])
-        console.log(pol_array[j])
-        console.log("\n")
-    }
-
-    utils.loop()
-    
-
-
-    
-    
 }
+ 
 
-exports.sendAllData=sendAllData
+
+
+
+exports.translateAdvice=translateAdvice
 
 
 

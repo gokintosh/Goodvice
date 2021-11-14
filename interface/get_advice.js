@@ -1,134 +1,123 @@
-// const axios=require('axios');
 const translateApi=require("./translate_advice")
 const { default: axios } = require("axios")
+const launcher=require('./index');
+const inquirer = require("inquirer");
+const utils=require("./utils")
 
 
 
 
 let engArray=[]
 let idArray=[]
-
-
-
 let limit
-
 let start=0
 let i
 
-const someFunc=async limit=>{
 
-    
+
+const getAdviceEng=async limit=>{
 
     while(start<limit){
+        console.clear()
+        
+        console.log("  loading..data transmissions can delay   ")
+
         try {
             const resp = await axios.get("https://api.adviceslip.com/advice");
-            engArray.push(resp.data.slip.advice)
-            idArray.push(resp.data.slip.id)
-            // console.log(resp.data.slip.id)
-            start++
-        } catch (err) {
-           
-            console.error(err);
-        }
 
+            // check if the advice is already present!!
+            if(!idArray.includes(resp.data.slip.id)){
+                engArray.push(resp.data.slip.advice)
+                idArray.push(resp.data.slip.id)
+                start++
+            }
+
+
+            
         
+            
+        } catch (err) {
 
-
-
-        // array.push(await (await axios.get("https://api.adviceslip.com/advice")).data.slip.advice)
+            // catch error and give custom values
+            engArray.push("If your program runs, dont touch it!!")
+            idArray.push(101010)
+            start++
+           
+        }
         
     }
 
     
+    // the next line executes when the start==limit
+    // we need to show the user English advices.
 
     if(start==limit){
-        
-
-        
-        translate(engArray,idArray)
-    }
-}
-
-// function returnEngArray(){
-//     return array
-// }
-
-
-// // function callApiEveryNSeconds(n){
-// //     setInterval(callApi,n*1000);
-// // }
-
-
-// // callApiEveryNSeconds(2)
-
-
-// // axios.get("https://api.adviceslip.com/advice").then(resp=>{
-// //     console.log(resp.data)
-// // })
-
-
-
-
-// function getloop(){
-//     setTimeout(function(){
-        
-//         callApi()
-//         start++
-//         if(start<limit){
-//             getloop();
-//         }
-//     },2000)
-
-
-// }
-
-
-// getloop();
-
-function printArray(){
-    for(let i=start;i<array.length;i++){
-        console.log(array[i])
+        console.clear()
         console.log("\n")
+
+        console.log("The English advices returned are: ")
+        console.log("\n")
+
+
+        utils.printArray(engArray,idArray)
+        console.log("\n")
+
+
+
+
+        // asking user to whether to translate the advices.
+        // if yes go to translate if no close app
+
+        inquirer.prompt([{
+            name:"continue",
+            type:"confirm",
+            message:"Would you like to translate to Polish? "
+        }])
+        .then((answer)=>{
+            if(answer.continue==true){
+                console.clear()
+                translate(engArray,idArray)
+            }
+            else{
+                utils.end()
+            }
+            // console.log(answer.continue)
+        })
+
+
+
+
+        
+        
+        
+
+        
+        
     }
-    console.log(`this is${array.length}`);
 }
 
 
-// const createLi=(advice)=>{
-//     const li=document.createElement('li')
 
-//     li.textContent=`${advice.id} : ${advice.advice}`;
-//     return li
-// }
-
-
-
-// const appendToDom=()=>{
-//      const ul=document.querySelector('ul')
-
-//      array.map(advice=>{
-//          ul.appendChild(createLi(advice))
-//      })
-// }
-
+// helper functions
 
 
 function callApi(limit){
-    someFunc(limit)
+    getAdviceEng(limit)
 }
 
 
 function translate(array,idArray){
-    translateApi.sendAllData(array,idArray)
+    translateApi.translateAdvice(array,idArray)
 }
 
 
 
 
 
-exports.callApi=callApi
+// export variables
 
-// exports.returnEngArray=returnEngArray
+exports.getAdviceEng=getAdviceEng
+
 
 
 
