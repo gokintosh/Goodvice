@@ -15,4 +15,4 @@ daily dose of advice
 ## -Call get request with async and store data in array list
 ## -Call post requests for translation
 ## -showing the user async laoding status
-## -Printing the davice in English and Polish with the original identification.
+## -Printing the advice in English and Polish with the original identification.
