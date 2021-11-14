@@ -5,14 +5,10 @@ const { default: axios } = require("axios")
 
 
 
-let array=[]
+let engArray=[]
+let idArray=[]
 
-// async function callApi(){
-//     let response=await axios({url:"https://api.adviceslip.com/advice"})
 
-//     // console.log("Response: ",response.data);
-//     array.push(response.data)
-// }
 
 let limit
 
@@ -23,17 +19,33 @@ const someFunc=async limit=>{
 
     
 
-    for(i=start;i<limit;i++){
+    while(start<limit){
+        try {
+            const resp = await axios.get("https://api.adviceslip.com/advice");
+            engArray.push(resp.data.slip.advice)
+            idArray.push(resp.data.slip.id)
+            // console.log(resp.data.slip.id)
+            start++
+        } catch (err) {
+           
+            console.error(err);
+        }
 
         
 
 
 
-        array.push(await (await axios.get("https://api.adviceslip.com/advice")).data.slip.advice)
+        // array.push(await (await axios.get("https://api.adviceslip.com/advice")).data.slip.advice)
         
     }
-    if(i==limit){
-        translate(array)
+
+    
+
+    if(start==limit){
+        
+
+        
+        translate(engArray,idArray)
     }
 }
 
@@ -106,8 +118,8 @@ function callApi(limit){
 }
 
 
-function translate(array){
-    translateApi.sendAllData(array)
+function translate(array,idArray){
+    translateApi.sendAllData(array,idArray)
 }
 
 

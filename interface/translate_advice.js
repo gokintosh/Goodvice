@@ -3,18 +3,21 @@ const api=require("./get_advice")
 const utils=require("./utils")
 
 let pol_advice_array=[]
+
 let i
+
 
 
 // const eng_advice_array = api.returnEngArray()
 
-const sendAllData=async eng_advice_array =>{
+const sendAllData=async (eng_advice_array,idArray) =>{
 
 
-    for(let i=0;i<eng_advice_array.length;i++){
+    for(i=0;i<eng_advice_array.length;i++){
 
             console.clear()
-            console.log(`${i} advices loaded!`)
+        
+            console.log(`${i+1} advices loaded!`)
 
 
         
@@ -32,21 +35,24 @@ const sendAllData=async eng_advice_array =>{
     
         
     }
-    printArray(eng_advice_array,pol_advice_array)
-    // if(i==eng_advice_array.length){
-    //     printArray()
-    // }
+ 
+    
+    if(i==eng_advice_array.length){
+        printArray(eng_advice_array,pol_advice_array,idArray)
+    }
   
 }
 
 
 
 
-function printArray(eng_array,pol_array){
-    console.log(`!!!We hope this ${pol_array.lenth} advices will make you the next Elon Musk!!`)
-    for(let i=0;i<pol_advice_array.length;i++){
-        console.log(eng_array[i])
-        console.log(pol_array[i])
+function printArray(eng_array,pol_array,id_array){
+    console.log(`!!!We hope this ${pol_array.length} advices will make you the next Elon Musk!!`)
+    
+    for(let j=0;j<eng_array.length;j++){
+        console.log(id_array[j])
+        console.log(eng_array[j])
+        console.log(pol_array[j])
         console.log("\n")
     }
 
